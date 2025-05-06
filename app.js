@@ -1,8 +1,9 @@
-require('dotenv').config();
-const express = require('express');
-const axios = require('axios');
-const cors = require('cors');
-const app = express();
+import express from 'express';
+import axios from 'axios';
+import cors from 'cors';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const TARGET_SERVERS = process.env.TARGET_SERVERS
   ? process.env.TARGET_SERVERS.split(',').map(s => s.trim())
@@ -15,7 +16,8 @@ if (TARGET_SERVERS.length === 0) {
 
 const PORT = process.env.PORT || 3030;
 
-// Allow all CORS
+const app = express();
+
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
